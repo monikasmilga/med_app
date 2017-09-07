@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MAUsers;
 use Illuminate\Http\Request;
 
 class MAUsersController extends Controller
@@ -13,7 +14,17 @@ class MAUsersController extends Controller
      */
     public function index()
     {
-        //
+
+        $users=MAUsers::all();
+
+        // formating data to response angular/json
+        $response = [
+            'users' => $users
+        ];
+
+        return response()->json($response, 200);
+
+
     }
 
     /**
@@ -23,7 +34,7 @@ class MAUsersController extends Controller
      */
     public function create()
     {
-        //
+        //front-end only
     }
 
     /**
@@ -56,7 +67,7 @@ class MAUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        //front-end only
     }
 
     /**
