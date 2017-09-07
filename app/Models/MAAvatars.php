@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MAAvatars extends CoreModel {
 
-	protected $fillable = [];
+    protected $table = 'ma_avatars';
+
+	protected $fillable = ['id', 'path', 'mime_type', 'size', 'width', 'height'];
 
 }
