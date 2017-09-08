@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MAPosts;
 use Illuminate\Http\Request;
 
 class MAPostsController extends Controller
@@ -13,7 +14,13 @@ class MAPostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts=MAPosts::all();
+
+        $response = [
+            'posts' => $posts
+        ];
+
+        return response()->json($response, 200);
     }
 
     /**
