@@ -17,11 +17,15 @@ class MAUsersController extends Controller
     public function index()
     {
 
+        $user = JWTAuth::parseToken()->toUser();
+        // when we are certain that the user is connected
+
         $users = MAUsers::all();
 
         // formating data to response angular/json
         $response = [
-            'users' => $users
+            'users' => $users,
+            'user' => $user,
         ];
 
         return response()->json($response, 200);
