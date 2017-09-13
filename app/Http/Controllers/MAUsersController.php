@@ -109,7 +109,18 @@ class MAUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = MAUsers::find($id);
+
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->position = $request->position;
+        $user->role_id = $request->role_id;
+
+        if($user->save()){
+            return response()->json(['user' => $user], 200);
+        }
+        return response()->json(['error' => 'User not updated!'], 400);
     }
 
     /**

@@ -71,8 +71,8 @@
       <file leaf-file-name="MAUsersController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MAUsersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="111" column="10" lean-forward="true" selection-start-line="111" selection-start-column="10" selection-end-line="111" selection-end-column="10" />
+            <state relative-caret-position="634">
+              <caret line="134" column="33" lean-forward="false" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
               <folding>
                 <element signature="e#40#63#0#PHP" expanded="true" />
               </folding>
@@ -498,16 +498,15 @@
       <workItem from="1504859427730" duration="1688000" />
       <workItem from="1505109929413" duration="7538000" />
       <workItem from="1505205891200" duration="5845000" />
-      <workItem from="1505282092779" duration="2697000" />
+      <workItem from="1505282092779" duration="4265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31157000" />
+    <option name="totallyTimeSpent" value="32725000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19616205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -962,8 +961,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MAUsersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="111" column="10" lean-forward="true" selection-start-line="111" selection-start-column="10" selection-end-line="111" selection-end-column="10" />
+        <state relative-caret-position="634">
+          <caret line="134" column="33" lean-forward="false" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
           <folding>
             <element signature="e#40#63#0#PHP" expanded="true" />
           </folding>
