@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\MAUsers;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -51,7 +54,22 @@ class MAUsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new MAUsers();
+
+        $user->id = Uuid::uuid4();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->position = $request->position;
+        $user->role_id = $request->role_id;
+        $user->password = Hash::make($request->password);
+        $user->remember_token = 0;
+
+        if ($user->save()) {
+            return response()->json(['user' => $user], 201);
+        } else {
+            return response()->json(['error' => 'New user not saved!'], 400);
+        }
     }
 
     /**
@@ -62,7 +80,13 @@ class MAUsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = MAUsers::find($id);
+
+        if($user){
+            return response()->json(['user' => $user], 200);
+        }else{
+            return response()->json(['error' => 'User not found!'], 400);
+        }
     }
 
     /**
@@ -96,8 +120,12 @@ class MAUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = MAUsers::where('id', $id)->delete();
+        return response()->json([
+            'success' => $user
+        ], 200);
     }
+
 
     public function signIn(Request $request)
     {
