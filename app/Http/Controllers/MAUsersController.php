@@ -82,9 +82,9 @@ class MAUsersController extends Controller
     {
         $user = MAUsers::find($id);
 
-        if($user){
+        if ($user) {
             return response()->json(['user' => $user], 200);
-        }else{
+        } else {
             return response()->json(['error' => 'User not found!'], 400);
         }
     }
@@ -117,7 +117,7 @@ class MAUsersController extends Controller
         $user->position = $request->position;
         $user->role_id = $request->role_id;
 
-        if($user->save()){
+        if ($user->save()) {
             return response()->json(['user' => $user], 200);
         }
         return response()->json(['error' => 'User not updated!'], 400);
