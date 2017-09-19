@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MARoles;
 use App\Models\MAUsers;
+use App\Models\MAUsersRolesConnections;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -63,11 +64,20 @@ class MAUsersController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->position = $request->position;
-        $user->role_id = $request->role_id;
+//        $user->role_id = $request->role_id;
         $user->password = Hash::make($request->password);
         $user->remember_token = 0;
 
         if ($user->save()) {
+            $roles = new MAUsersRolesConnections();
+            $dataSet = [];
+            foreach ($request->roles as $id) {
+                $dataSet[] = [
+                    'user_id' => $user->id,
+                    'role_id' => $id
+                ];
+            }
+            $roles->insert($dataSet);
             return response()->json(['user' => $user], 201);
         } else {
             return response()->json(['error' => 'New user not saved!'], 400);
@@ -118,9 +128,20 @@ class MAUsersController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->position = $request->position;
-        $user->role_id = $request->role_id;
+//        $user->role_id = $request->role_id;
 
         if ($user->save()) {
+
+            MAUsersRolesConnections::where('user_id', $id)->delete();
+            $roles = new MAUsersRolesConnections();
+            $dataSet = [];
+            foreach ($request->roles as $id) {
+                $dataSet[] = [
+                    'user_id' => $user->id,
+                    'role_id' => $id
+                ];
+            }
+            $roles->insert($dataSet);
             return response()->json(['user' => $user], 200);
         }
         return response()->json(['error' => 'User not updated!'], 400);
@@ -134,6 +155,7 @@ class MAUsersController extends Controller
      */
     public function destroy($id)
     {
+        MAUsersRolesConnections::where('user_id', $id)->delete();
         $user = MAUsers::where('id', $id)->delete();
         return response()->json([
             'success' => $user
