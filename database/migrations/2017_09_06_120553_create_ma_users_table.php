@@ -18,7 +18,6 @@ class CreateMaUsersTable extends Migration {
 			$table->string('id', 36)->unique('id_UNIQUE');
 			$table->timestamps();
 			$table->softDeletes();
-			$table->string('role_id', 36);
 			$table->string('avatar_id', 36)->nullable()->index('fk_ma_users_ma_files_idx');
 			$table->string('first_name');
 			$table->string('last_name');

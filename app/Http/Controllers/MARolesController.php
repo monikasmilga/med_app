@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MARoles;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class MARolesController extends Controller
 {
@@ -13,7 +15,13 @@ class MARolesController extends Controller
      */
     public function index()
     {
-        //
+        $roles = MARoles::all();
+
+        $response = [
+            'roles' => $roles
+        ];
+
+        return response()->json($response, 200);
     }
 
     /**
@@ -34,7 +42,15 @@ class MARolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = new MARoles();
+        $role->id = Uuid::uuid4();
+        $role->name = $request->name;
+
+        if ($role->save()) {
+            return response()->json(['role' => $role], 201);
+        }else{
+            return response()->json(['error' => 'New role not saved!'], 400);
+        }
     }
 
     /**
@@ -45,7 +61,13 @@ class MARolesController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = MARoles::find($id);
+
+        if ($role) {
+            return response()->json(['role' => $role], 200);
+        }else {
+            return response()->json(['error' => 'Role not found!'], 200);
+        }
     }
 
     /**
@@ -68,7 +90,14 @@ class MARolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = MARoles::find($id);
+        $role->name = $request->name;
+
+        if ($role->save()) {
+            return response()->json(['role' => $role], 200);
+        }else{
+            return response()->json(['error' => 'Edited role not saved!'], 400);
+        }
     }
 
     /**
@@ -79,6 +108,9 @@ class MARolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = MARoles::where('id', $id)->delete();
+        return response()->json([
+            'success' => $role
+        ], 200);
     }
 }

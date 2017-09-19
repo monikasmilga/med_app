@@ -71,7 +71,7 @@ class MAPostsController extends Controller
         if ($post) {
             return response()->json(['post' => $post], 200);
         } else {
-            return response()->json(['error' => 'User not found!'], 400);
+            return response()->json(['error' => 'Post not found!'], 400);
         }
     }
 
@@ -102,7 +102,7 @@ class MAPostsController extends Controller
         if ($post->save()) {
             return response()->json(['post' => $post], 200);
         } else {
-            return response()->json(['error' => 'New post not saved!'], 400);
+            return response()->json(['error' => 'Edited post not saved!'], 400);
         }
     }
 
