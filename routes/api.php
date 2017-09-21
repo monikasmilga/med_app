@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
+Route::get('/all/posts','MAPostsController@allPosts');
+Route::get('/one/post/{id}', 'MAPostsController@showPost');
 
 Route::post('users/signin', 'MAUsersController@signIn');
 
